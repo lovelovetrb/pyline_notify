@@ -11,8 +11,26 @@ Python で書かれたスクリプトにたった 2 行追加することで、P
 
 ## 使い方
 
-1. [LINE Notify のページ](https://notify-bot.line.me/ja/)にアクセスし、ログイン後アクセストークンを取得します。
+1. [LINE Notify のページ](https://notify-bot.line.me/my/)にアクセスし、ログイン後アクセストークンを取得します。
 2. お使いの Python パッケージ管理ツールで `pyline-notify` をインストールします。
+
+   pip
+
+   ```
+   pip install git+https://github.com/lovelovetrb/pyline_notify
+   ```
+
+   rye
+
+   ```
+   rye add pyline-notify --git=https://github.com/lovelovetrb/pyline_notify
+   ```
+
+   poetry(未検証)
+   ```
+   poetry add git+https://github.com/lovelovetrb/pyline_notify
+   ```
+
 3. LINE 通知を行いたいスクリプトで`pyline-notify`をインポートして、デコレーターをつけます。
 4. スクリプトの開始と終了時にご自身の LINE アカウントに通知が飛びます！
 
