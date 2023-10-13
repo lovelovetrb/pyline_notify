@@ -7,11 +7,14 @@ from pyline_notify import notify
 
 load_dotenv()
 
+token = os.getenv("LINE_TOKEN")
 
-# @notify をつけると、関数の実行状況が LINE に通知されます。
+
+# @notify デコレーターをつけると、関数の実行状況が LINE に通知されます。
+# 通知されるのは、関数の実行開始と終了、エラー発生時です。
 # 引数には LINE Notify のトークンを指定します。
 # debug=True でデバッグモードになり、LINE に通知されないようになります。
-@notify(os.getenv("LINE_TOKEN"), debug=False)
+@notify(token, debug=False)
 def main():
     print("Hello, world!")
     sleep(3)
