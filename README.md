@@ -38,13 +38,11 @@ Python で書かれたスクリプトにたった 2 行追加することで、P
 
 使い方は[サンプルコード](./demo)をご覧下さい。
 
-## 参考にさせていただいた記事
+## このスクリプトに関する記事
 
-[python の実行完了を slack に通知する時の私的ベストプラクティス](https://zenn.dev/shiro46/articles/49dc4c479f9675)
+参考にさせていただいたもの、作成の動機などをまとめています。
 
-[Python の実行終了を LINE で通知する](https://qiita.com/AoyaHashizu/items/13848b013daa18f6461b)
-
-[Python のデコレータを理解するまで](https://zenn.dev/ryo_kawamata/articles/learn_decorator_in_python)
+[Zenn](https://zenn.dev/misora/articles/8853137fd74212)
 
 ## LICENSE
 
