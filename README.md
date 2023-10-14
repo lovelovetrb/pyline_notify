@@ -50,8 +50,10 @@ Python で書かれたスクリプトにたった 2 行追加することで、P
 
 [MIT LICENSE](./LICENSE)
 
-# Auther
+## Auther
 
 RISUman
+
 mail: mbaba@kanolab.com
+
 [Twitter](https://twitter.com/lovelovetrb)
