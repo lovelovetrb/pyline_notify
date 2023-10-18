@@ -1,7 +1,7 @@
 [project]
 name = "pyline-notify"
 version = "1.0"
-description = "Pythonのスクリプトを"
+description = "Pythonのスクリプトの開始と終了時にLINE Notifyに通知するツール"
 authors = [
     { name = "Mizuki", email = "mbaba@kanolab.net" }
 ]
