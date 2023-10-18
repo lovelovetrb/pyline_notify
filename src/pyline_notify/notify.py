@@ -1,7 +1,9 @@
 import functools
+import os
 import platform
 from datetime import datetime
 
+import __main__
 import requests
 
 
@@ -29,9 +31,9 @@ def notify(token, debug=False):
             start_time = datetime.now()
             start_time_fmt = start_time.strftime("%Y/%m/%d %H:%M:%S")
             send(
-                f"\n\
+                f"\
                   \n{start_time_fmt}: Script Start🙌\
-                  \nwatch func name -> {func.__name__}\
+                  \nwatch file&func -> {os.path.basename(__main__.__file__)} {func.__name__}\
                   \nplatform -> {platform.platform(terse=True)} \
                   \n",
                 token,
@@ -41,7 +43,7 @@ def notify(token, debug=False):
             except BaseException as e:
                 end_time = datetime.now()
                 send(
-                    f"\n\
+                    f"\
                      \nError has occured😿\
                      \nError code -> {str(e)}\
                      \nelapsed time -> {format_timedelta(end_time - start_time)}\
@@ -52,7 +54,7 @@ def notify(token, debug=False):
             else:
                 end_time = datetime.now()
                 send(
-                    f"\n\
+                    f"\
                       \nCode Completed Successfully🫶\
                       \nelapsed time -> {format_timedelta(end_time - start_time)}\
                       \n",
