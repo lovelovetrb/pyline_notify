@@ -22,22 +22,32 @@ def format_timedelta(timedelta):
     return fmt
 
 
-def notify(token, debug=False):
+def notify(
+    token,
+    debug=False,
+    ploject_name=f"{os.path.basename(__main__.__file__)} {func.__name__}",
+):
     def _notify(func):
         @functools.wraps(func)
         def _wrapper(*args, **kwargs):
             if debug:
-                return func(*args, **kwargs)
+                try:
+                    return func(*args, **kwargs)
+                except BaseException as e:
+                    send(f"Error has occured😿\nError code -> {str(e)}", token)
+
             start_time = datetime.now()
             start_time_fmt = start_time.strftime("%Y/%m/%d %H:%M:%S")
+
             send(
                 f"\
                   \n{start_time_fmt}: Script Start🙌\
-                  \nwatch file&func -> {os.path.basename(__main__.__file__)} {func.__name__}\
+                  \nPloject Name -> {ploject_name}\
                   \nplatform -> {platform.platform(terse=True)} \
                   \n",
                 token,
             )
+
             try:
                 result = func(*args, **kwargs)
             except BaseException as e:
@@ -45,6 +55,7 @@ def notify(token, debug=False):
                 send(
                     f"\
                      \nError has occured😿\
+                     \nPloject Name -> {ploject_name}\
                      \nError code -> {str(e)}\
                      \nelapsed time -> {format_timedelta(end_time - start_time)}\
                      \n",
@@ -56,6 +67,7 @@ def notify(token, debug=False):
                 send(
                     f"\
                       \nCode Completed Successfully🫶\
+                      \nPloject Name -> {ploject_name}\
                       \nelapsed time -> {format_timedelta(end_time - start_time)}\
                       \n",
                     token,
