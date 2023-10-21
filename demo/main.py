@@ -14,7 +14,11 @@ token = os.getenv("LINE_TOKEN")
 # 通知されるのは、関数の実行開始と終了、エラー発生時です。
 # 引数には LINE Notify のトークンを指定します。
 # debug=True でデバッグモードになり、LINE に通知されないようになります。
-@notify(token, debug=False)
+# project_name でプロジェクト名を指定できます。
+# デフォルトでは、ファイル名と監視対象の関数名がプロジェクト名になります。
+
+
+@notify(token, debug=False, ploject_name="test")
 def main():
     print("Hello, world!")
     sleep(3)
