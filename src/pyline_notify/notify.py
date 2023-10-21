@@ -25,16 +25,27 @@ def format_timedelta(timedelta):
 def notify(
     token,
     debug=False,
-    ploject_name=f"{os.path.basename(__main__.__file__)} {func.__name__}",
+    ploject_name="",
 ):
     def _notify(func):
         @functools.wraps(func)
         def _wrapper(*args, **kwargs):
+            new_ploject_name = ploject_name
+            if new_ploject_name == "":
+                new_ploject_name = (
+                    f"{os.path.basename(__main__.__file__)} {func.__name__}"
+                )
+
             if debug:
                 try:
-                    return func(*args, **kwargs)
+                    result = func(*args, **kwargs)
                 except BaseException as e:
-                    send(f"Error has occured😿\nError code -> {str(e)}", token)
+                    send(
+                        f"\nError has occured😿\nError code -> {str(e)}\nPloject Name -> {new_ploject_name}",
+                        token,
+                    )
+                    raise e
+                return result
 
             start_time = datetime.now()
             start_time_fmt = start_time.strftime("%Y/%m/%d %H:%M:%S")
@@ -42,7 +53,7 @@ def notify(
             send(
                 f"\
                   \n{start_time_fmt}: Script Start🙌\
-                  \nPloject Name -> {ploject_name}\
+                  \nPloject Name -> {new_ploject_name}\
                   \nplatform -> {platform.platform(terse=True)} \
                   \n",
                 token,
@@ -55,7 +66,7 @@ def notify(
                 send(
                     f"\
                      \nError has occured😿\
-                     \nPloject Name -> {ploject_name}\
+                     \nPloject Name -> {new_ploject_name}\
                      \nError code -> {str(e)}\
                      \nelapsed time -> {format_timedelta(end_time - start_time)}\
                      \n",
@@ -67,7 +78,7 @@ def notify(
                 send(
                     f"\
                       \nCode Completed Successfully🫶\
-                      \nPloject Name -> {ploject_name}\
+                      \nPloject Name -> {new_ploject_name}\
                       \nelapsed time -> {format_timedelta(end_time - start_time)}\
                       \n",
                     token,
