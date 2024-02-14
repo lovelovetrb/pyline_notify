@@ -18,7 +18,7 @@ token = os.getenv("LINE_TOKEN")
 # デフォルトでは、ファイル名と監視対象の関数名がプロジェクト名になります。
 
 
-@notify(token, debug=False, ploject_name="test")
+@notify(token, debug=False, project_name="test")
 def main():
     print("Hello, world!")
     sleep(3)
