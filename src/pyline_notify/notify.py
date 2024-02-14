@@ -25,14 +25,14 @@ def format_timedelta(timedelta):
 def notify(
     token,
     debug=False,
-    ploject_name="",
+    project_name="",
 ):
     def _notify(func):
         @functools.wraps(func)
         def _wrapper(*args, **kwargs):
-            new_ploject_name = ploject_name
-            if new_ploject_name == "":
-                new_ploject_name = (
+            new_project_name = project_name
+            if new_project_name == "":
+                new_project_name = (
                     f"{os.path.basename(__main__.__file__)} {func.__name__}"
                 )
 
@@ -41,7 +41,7 @@ def notify(
                     result = func(*args, **kwargs)
                 except BaseException as e:
                     send(
-                        f"\nError has occured😿\nError code -> {str(e)}\nPloject Name -> {new_ploject_name}",
+                        f"\nError has occured😿\nError code -> {str(e)}\nproject Name -> {new_project_name}",
                         token,
                     )
                     raise e
@@ -53,7 +53,7 @@ def notify(
             send(
                 f"\
                   \n{start_time_fmt}: Script Start🙌\
-                  \nPloject Name -> {new_ploject_name}\
+                  \nProject Name -> {new_project_name}\
                   \nplatform -> {platform.platform(terse=True)} \
                   \n",
                 token,
@@ -66,7 +66,7 @@ def notify(
                 send(
                     f"\
                      \nError has occured😿\
-                     \nPloject Name -> {new_ploject_name}\
+                     \nProject Name -> {new_project_name}\
                      \nError code -> {str(e)}\
                      \nelapsed time -> {format_timedelta(end_time - start_time)}\
                      \n",
@@ -78,7 +78,7 @@ def notify(
                 send(
                     f"\
                       \nCode Completed Successfully🫶\
-                      \nPloject Name -> {new_ploject_name}\
+                      \nProject Name -> {new_project_name}\
                       \nelapsed time -> {format_timedelta(end_time - start_time)}\
                       \n",
                     token,
